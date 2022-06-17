@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# ***************************************************
+triggerhappy='/etc/triggerhappy/triggers.d/example.conf'
+echo -e "# This is an example configuration for the triggerhappy daemon (thd)" > $triggerhappy
+echo -e "# please note that every file to be processed must end in \".conf\"" >> $triggerhappy
+echo -e "#"'\n'"# To view a list of supported event codes, use \"thd --listevents\" or" >> $triggerhappy
+echo -e "# \"thd --dump /dev/input/event*\""'\n'"#"'\n'"# Format:"'\n'"# <eventcode> <value> <command>" >> $triggerhappy
+echo -e "#"'\n'"# values for key events are 1 (pressed), 0 (released) or 2 (held)" >> $triggerhappy
+echo -e "#"'\n'"## control an mpd instance" >> $triggerhappy
+echo -e "# KEY_NEXTSONG"'\t'"1"'\t'"/usr/bin/mpc next" >> $triggerhappy
+echo -e "# KEY_PREVSONG"'\t'"1"'\t'"/usr/bin/mpc prev" >> $triggerhappy
+echo -e "KEY_1"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 1" >> $triggerhappy
+echo -e "KEY_2"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 2" >> $triggerhappy
+echo -e "KEY_3"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 3" >> $triggerhappy
+echo -e "KEY_4"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 4" >> $triggerhappy
+echo -e "KEY_5"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 5" >> $triggerhappy
+echo -e "KEY_6"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 6" >> $triggerhappy
+echo -e "KEY_7"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 7" >> $triggerhappy
+echo -e "KEY_8"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 8" >> $triggerhappy
+echo -e "KEY_9"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 9" >> $triggerhappy
+echo -e "KEY_0"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 10" >> $triggerhappy
+#echo -e "KEY_MUTE"'\t'"1"'\t'"amixer -c 0 -q set \"Line Out\" 100%-" >> $triggerhappy
+echo -e "KEY_POWER"'\t'"1"'\t'"/etc/init.d/web-radio2.init start" >> $triggerhappy
+echo -e "KEY_CHANNELUP"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 0" >> $triggerhappy
+echo -e "KEY_CHANNELDOWN"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 63" >> $triggerhappy
+echo -e "KEY_OK"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 62" >> $triggerhappy
+echo -e "KEY_ENTER"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 62" >> $triggerhappy
+echo -e "KEY_PLAYPAUSE"'\t'"1"'\t'"/etc/init.d/web-radio2.init start" >> $triggerhappy
+echo -e "KEY_NEXTSONG"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 0" >> $triggerhappy
+echo -e "KEY_UP"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 0" >> $triggerhappy
+echo -e "KEY_PREVIOUSSONG"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 63" >> $triggerhappy
+echo -e "KEY_TUNER"'\t'"2"'\t'"reboot" >> $triggerhappy
+echo -e "KEY_MUTE"'\t'"1"'\t'"tda7313 volume 0" >> $triggerhappy
+echo -e "KEY_VOLUMEUP"'\t'"1"'\t'"amixer -c 0 -q set "Line Out" 1+" >> $triggerhappy
+echo -e "KEY_VOLUMEUP"'\t'"2"'\t'"tda7313 volume +" >> $triggerhappy
+echo -e "KEY_VOLUMEDOWN"'\t'"1"'\t'"amixer -c 0 -q set "Line Out" 1-" >> $triggerhappy
+echo -e "KEY_VOLUMEDOWN"'\t'"2"'\t'"tda7313 volume -" >> $triggerhappy
+echo -e "BTN_RIGHT"'\t'"1"'\t'"tda7313 streble +" >> $triggerhappy
+echo -e "BTN_RIGHT"'\t'"2"'\t'"tda7313 streble +" >> $triggerhappy
+echo -e "BTN_LEFT"'\t'"1"'\t'"tda7313 streble -" >> $triggerhappy
+echo -e "BTN_LEFT"'\t'"2"'\t'"tda7313 streble 0" >> $triggerhappy
+echo -e "KEY_PAGEUP"'\t'"1"'\t'"tda7313 init" >> $triggerhappy
+echo -e "BTN_PINKIE"'\t'"1"'\t'"tda7313 treble +" >> $triggerhappy
+echo -e "BTN_PINKIE"'\t'"2"'\t'"tda7313 treble +" >> $triggerhappy
+echo -e "KEY_PAGEDOWN"'\t'"1"'\t'"tda7313 treble -" >> $triggerhappy
+echo -e "KEY_PAGEDOWN"'\t'"2"'\t'"tda7313 treble 0" >> $triggerhappy
+echo -e "BTN_BASE"'\t'"2"'\t'"tda7313 sbass 0" >> $triggerhappy
+echo -e "KEY_RIGHT_DOWN"'\t'"1"'\t'"tda7313 sbass +" >> $triggerhappy
+echo -e "KEY_RIGHT_DOWN"'\t'"2"'\t'"tda7313 sbass +" >> $triggerhappy
+echo -e "KEY_RIGHT_UP"'\t'"1"'\t'"tda7313 sbass -" >> $triggerhappy
+echo -e "KEY_RIGHT_UP"'\t'"2"'\t'"tda7313 sbass 0" >> $triggerhappy
+echo -e "KEY_KBDINPUTASSIST_PREV"'\t'"1"'\t'"tda7313 input 1" >> $triggerhappy
+echo -e "KEY_KBDINPUTASSIST_NEXT"'\t'"1"'\t'"tda7313 input 0" >> $triggerhappy
+echo -e "KEY_KBDINPUTASSIST_PREVGROUP"'\t'"1"'\t'"tda7313 input 2" >> $triggerhappy
+echo -e "REL_Y"'\t'"1"'\t'"tda7313 volume \"-\"" >> $triggerhappy
+echo -e "REL_Y"'\t'"-1"'\t'"tda7313 volume \"+\"" >> $triggerhappy
+echo -e "KEY_SYSRQ"'\t'"1"'\t'"/etc/init.d/web-radio2.init reload 0" >> $triggerhappy
+# ***************************************************
+
+sed -i "/web-ir-remote\/index.cgi/d" /www/menu.html 2> /dev/null
+	# К моей вебке cyberwrt - раскомментировать если будет использоваться ####
+sed -i 3i\ '<li><a href=/cgi-bin/modules/web-ir-remote/index.cgi>'Ir-remote-setup'</a></li>' /www/menu.html 2> /dev/null
+	# К вебке cyberwrt - закомментировть если НЕ будет использоваться ####
+#sed -i 3i\ '<a href=/cgi-bin/modules/web-ir-remote/index.cgi><div class=left>'Ir-remote-setup'</div></a>' /www/menu.html 2> /dev/null
+
