@@ -1,5 +1,5 @@
---- a/target/linux/sunxi/config-5.4	2021-04-19 22:10:14.000000000 +0300
-+++ b/target/linux/sunxi/config-5.4	2021-05-21 12:13:05.378889259 +0300
+--- a/target/linux/sunxi/config-5.4 2021-04-19 22:10:14.000000000 +0300
++++ b/target/linux/sunxi/config-5.4 2021-05-21 12:13:05.378889259 +0300
 @@ -90,6 +90,7 @@
  CONFIG_CLK_SUNXI_PRCM_SUN6I=y
  CONFIG_CLK_SUNXI_PRCM_SUN8I=y
@@ -2795,87 +2795,11 @@
 + 
 + 	flash@0 {
 + 		#address-cells = <1>;
---- a/package/boot/uboot-sunxi/patches/001-add-orangepi-zero-lts.patch	1970-01-01 03:00:00.000000000 +0300
-+++ b/package/boot/uboot-sunxi/patches/001-add-orangepi-zero-lts.patch	2021-05-12 22:49:48.010957000 +0300
-@@ -0,0 +1,37 @@
-+--- a/arch/arm/dts/Makefile
-++++ b/arch/arm/dts/Makefile
-+@@ -519,6 +530,7 @@
-+ 	sun8i-h2-plus-libretech-all-h3-cc.dtb \
-+ 	sun8i-h2-plus-orangepi-r1.dtb \
-+ 	sun8i-h2-plus-orangepi-zero.dtb \
-++	sun8i-h2-plus-orangepi-zero-lts.dtb \
-+ 	sun8i-h3-bananapi-m2-plus.dtb \
-+ 	sun8i-h3-bananapi-m2-plus-v1.2.dtb \
-+ 	sun8i-h3-beelink-x2.dtb \
-+--- /dev/null
-++++ b/arch/arm/dts/sun8i-h2-plus-orangepi-zero-lts.dts
-+@@ -0,0 +1,8 @@
-++
-++/* Orange Pi Zero Lts is based on Orange Pi Zero design */
-++#include "sun8i-h2-plus-orangepi-zero.dts"
-++
-++/ {
-++	model = "Xunlong Orange Pi Zero Lts";
-++	compatible = "xunlong,orangepi-zero-lts", "allwinner,sun8i-h2-plus";
-++};
-+--- /dev/null
-++++ b/configs/orangepi_zero_lts_defconfig
-+@@ -0,0 +1,13 @@
-++CONFIG_ARM=y
-++CONFIG_ARCH_SUNXI=y
-++CONFIG_SPL=y
-++CONFIG_MACH_SUN8I_H3=y
-++CONFIG_DRAM_CLK=624
-++# CONFIG_VIDEO_DE2 is not set
-++CONFIG_SPL_SPI_SUNXI=y
-++# CONFIG_SYS_MALLOC_CLEAR_ON_INIT is not set
-++CONFIG_CONSOLE_MUX=y
-++CONFIG_DEFAULT_DEVICE_TREE="sun8i-h2-plus-orangepi-zero-lts"
-++CONFIG_SUN8I_EMAC=y
-++CONFIG_USB_EHCI_HCD=y
-++CONFIG_USB_OHCI_HCD=y
 --- a/package/boot/uboot-sunxi/patches/001-add-spi-orangepi_r1_defconfig.patch	1970-01-01 03:00:00.000000000 +0300
 +++ b/package/boot/uboot-sunxi/patches/001-add-spi-orangepi_r1_defconfig.patch	2021-05-20 15:35:36.906256000 +0300
 @@ -0,0 +1,15 @@
 +--- a/configs/orangepi_r1_defconfig	2020-04-13 18:02:18.000000000 +0300
 ++++ b/configs/orangepi_r1_defconfig	2021-02-11 11:56:03.965480643 +0200
-+@@ -11,3 +11,12 @@
-+ CONFIG_SUN8I_EMAC=y
-+ CONFIG_USB_EHCI_HCD=y
-+ CONFIG_USB_OHCI_HCD=y
-++CONFIG_SPI=y
-++CONFIG_SPI_SUNXI=y
-++CONFIG_CMD_SF=y
-++CONFIG_CMD_SPI=y
-++CONFIG_DM_SPI=y
-++CONFIG_DM_SPI_FLASH=y
-++CONFIG_SPI_FLASH=y
-++CONFIG_SPI_FLASH_WINBOND=y
-++CONFIG_SPI_FLASH_MACRONIX=y
---- a/package/boot/uboot-sunxi/patches/001-add-spi-orangepi_zero_defconfig.patch	1970-01-01 03:00:00.000000000 +0300
-+++ b/package/boot/uboot-sunxi/patches/001-add-spi-orangepi_zero_defconfig.patch	2021-05-20 15:35:13.522866000 +0300
-@@ -0,0 +1,15 @@
-+--- a/configs/orangepi_zero_defconfig	2020-04-13 18:02:18.000000000 +0300
-++++ b/configs/orangepi_zero_defconfig	2021-02-11 11:56:03.965480643 +0200
-+@@ -11,3 +11,12 @@
-+ CONFIG_SUN8I_EMAC=y
-+ CONFIG_USB_EHCI_HCD=y
-+ CONFIG_USB_OHCI_HCD=y
-++CONFIG_SPI=y
-++CONFIG_SPI_SUNXI=y
-++CONFIG_CMD_SF=y
-++CONFIG_CMD_SPI=y
-++CONFIG_DM_SPI=y
-++CONFIG_DM_SPI_FLASH=y
-++CONFIG_SPI_FLASH=y
-++CONFIG_SPI_FLASH_WINBOND=y
-++CONFIG_SPI_FLASH_MACRONIX=y
---- a/package/boot/uboot-sunxi/patches/001-add-spi-orangepi_zero_lts_defconfig.patch	1970-01-01 03:00:00.000000000 +0300
-+++ b/package/boot/uboot-sunxi/patches/001-add-spi-orangepi_zero_lts_defconfig.patch	2021-05-20 18:03:10.303482000 +0300
-@@ -0,0 +1,15 @@
-+--- a/configs/orangepi_zero_lts_defconfig	2020-04-13 18:02:18.000000000 +0300
-++++ b/configs/orangepi_zero_lts_defconfig	2021-02-11 11:56:03.965480643 +0200
 +@@ -11,3 +11,12 @@
 + CONFIG_SUN8I_EMAC=y
 + CONFIG_USB_EHCI_HCD=y
@@ -2928,7 +2852,7 @@
 -		set system.@system[-1].timezone='UTC'
 +		set system.@system[-1].hostname=${boardname}
 +		set system.@system[-1].timezone='EET-2EEST,M3.5.0/3,M10.5.0/4'
-+		set system.@system[-1].zonename='Europe/Zaporozhye'
++		set system.@system[-1].zonename='Asia/Ho_Chi_Minh'
 +		set system.@system[-1].log_proto='udp'
 +		set system.@system[-1].conloglevel='8'
 +		set system.@system[-1].cronloglevel='8'
@@ -2978,55 +2902,10 @@
  	echo 'pi_preinit_net_messages="$(CONFIG_TARGET_PREINIT_SHOW_NETMSG)"' >>$(1)/lib/preinit/00_preinit.conf
  	echo 'pi_preinit_no_failsafe_netmsg="$(CONFIG_TARGET_PREINIT_SUPPRESS_FAILSAFE_NETMSG)"' >>$(1)/lib/preinit/00_preinit.conf
  	echo 'pi_preinit_no_failsafe="$(CONFIG_TARGET_PREINIT_DISABLE_FAILSAFE)"' >>$(1)/lib/preinit/00_preinit.conf
---- a/package/kernel/mac80211/files/lib/wifi/mac80211.sh	2021-04-19 22:10:14.000000000 +0300
-+++ b/package/kernel/mac80211/files/lib/wifi/mac80211.sh	2021-05-24 12:55:58.954400464 +0300
-@@ -3,6 +3,9 @@
- 
- append DRIVERS "mac80211"
- 
-+board=$(cat /tmp/sysinfo/board_name)
-+boardname="${board##*,}"
-+
- lookup_phy() {
- 	[ -n "$phy" ] && {
- 		[ -d /sys/class/ieee80211/$phy ] && return
-@@ -76,7 +79,7 @@
- 		[ "$found" -gt 0 ] && continue
- 
- 		mode_band="g"
--		channel="11"
-+		channel="1"
- 		htmode=""
- 		ht_capab=""
- 
-@@ -110,16 +113,21 @@
- 			set wireless.radio${devidx}.hwmode=11${mode_band}
- 			${dev_id}
- 			${ht_capab}
--			set wireless.radio${devidx}.disabled=1
-+			set wireless.radio${devidx}.txpower=20
-+			set wireless.radio${devidx}.distance=100
-+			set wireless.radio${devidx}.country=UA
-+			set wireless.radio${devidx}.disabled=0
- 
- 			set wireless.default_radio${devidx}=wifi-iface
- 			set wireless.default_radio${devidx}.device=radio${devidx}
- 			set wireless.default_radio${devidx}.network=lan
- 			set wireless.default_radio${devidx}.mode=ap
--			set wireless.default_radio${devidx}.ssid=OpenWrt
-+			set wireless.default_radio${devidx}.ssid=${boardname}
- 			set wireless.default_radio${devidx}.encryption=none
- EOF
- 		uci -q commit wireless
-+		sleep 2
-+		wifi
- 
- 		devidx=$(($devidx + 1))
- 	done
 --- a/feeds.conf.default	2021-04-19 22:10:14.000000000 +0300
 +++ b/feeds.conf.default	2021-05-08 21:04:39.783976932 +0300
-@@ -2,3 +2,6 @@
- src-git luci https://git.openwrt.org/project/luci.git^7d913b997601d533cca187cfc1b3057c3c98effc
- src-git routing https://git.openwrt.org/feed/routing.git^5b4d4c7fb6a97cac68c7d8b156fd0ab27bab4dcc
- src-git telephony https://git.openwrt.org/feed/telephony.git^178822957123b821407e1216e9e7314161512ac6
+@@ -2,3 +2,4 @@
+ src-git-full luci https://git.openwrt.org/project/luci.git^e98243ef9eb838cca80cdd6d1bd0cf69a509d103
+ src-git-full routing https://git.openwrt.org/feed/routing.git^8071852b4556a02533cacb7a0f6a432df3507302
+ src-git-full telephony https://git.openwrt.org/feed/telephony.git^920fbc5c0a2e4badf51bceff42e9a1e3eb693462
 +src-git opicyberwrt https://github.com/melsem/opi-zero-cyberwrt.git
