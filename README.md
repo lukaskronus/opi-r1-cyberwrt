@@ -21,7 +21,13 @@ make menuconfig
 ```
 make
 ```
-- After compiled, flash the firmware to your board
+- After compiled, flash the firmware to your board. Run the following command lines
+```
+cd /tmp
+mtd -e uboot write sun8i-h2-plus_orangepi-r1-boot.bin uboot
+mtd -e dtb write sun8i-h2-plus-orangepi-r1-dtb dtb
+mtd -e firmware write sun8i-h2-plus-orangepi-r1-squashfs-sysupgrade.bin firmware
+```
 - When boot the first time, enter to boot configuration site
 ```
 http://192.168.10.1/boot
